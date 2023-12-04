@@ -1,29 +1,49 @@
-import matplotlib
-import matplotlib.pyplot as plt
 import pandas as pd
-import numpy as np
-import seaborn as sns
-
-
-from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
-from sklearn.linear_model import LinearRegression, Lasso, Ridge, LogisticRegression
-from sklearn.svm import LinearSVC
-from sklearn.preprocessing import PolynomialFeatures, StandardScaler
-from sklearn.metrics import make_scorer, mean_absolute_error, r2_score, accuracy_score, precision_score
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_absolute_error
 
-
-# Assuming the TXT file is tab-separated
 df = pd.read_csv('traffic.csv')
-# Display the first few rows of the DataFrame (To test if its working)
+
+# Convert 'Time' to minutes
+df['Time'] = pd.to_datetime(df['Time'], format='%I:%M:%S %p').dt.hour * 60 + pd.to_datetime(df['Time'], format='%I:%M:%S %p').dt.minute
+
+# Preprocessing columns
+numeric_features = ['Time', 'Date', 'CarCount', 'BikeCount', 'BusCount', 'TruckCount']
+categorical_features = ['Day of the week']
+
+# Create preprocessor
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', StandardScaler(), numeric_features),  # Include 'Time' in numeric features
+        ('cat', OneHotEncoder(), categorical_features)
+    ])
+
+
+X = df.drop("Total", axis='columns')  # Features
+y = df["Total"]  # Target variable
+
+# Splitting the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=42)
+
+# Create a pipeline with preprocessing and Linear Regression model
+model = LinearRegression()
+
+pipeline = Pipeline(steps=[('preprocessor', preprocessor), ('model', model)])
+
+# Fit the pipeline on the training data
+pipeline.fit(X_train, y_train)
+
+# Use the pipeline to make predictions on the testing set
+predictions = pipeline.predict(X_test)
+
+# Evaluate the model performance
+mae = mean_absolute_error(y_test, predictions)
+
+
 print(df.head())
-
-#potential pre-processing required
-
-
-#Splitting the data into training and testing splits
-X = df.drop("Total" , axis = 'columns').values #Drops target column using Total vehicles (FOR NOW)
-y = df["Total"].values #retrieves the target column Total vehicles (FOR NOW)
-
-Xtrain, Xtest, ytrain, ytest = train_test_split(X, y, test_size = 0.30, random_state = 42)
-#Test_size is 30% and 70% is for training
+# Display the evaluation metrics
+print(f"Mean Absolute Error: {mae}") ##extermely small and means it is very close to actual values in testing set.
