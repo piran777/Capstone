@@ -22,8 +22,8 @@ print(df.head())
 
 
 #Splitting the data into training and testing splits
-X = df.drop("Traffic Situation" , axis = 'columns').values #Drops target column
-y = df["Traffic Situation"].values #retrieves the target column
+X = df.drop("Total" , axis = 'columns').values #Drops target column using Total vehicles (FOR NOW)
+y = df["Total"].values #retrieves the target column Total vehicles (FOR NOW)
 
 Xtrain, Xtest, ytrain, ytest = train_test_split(X, y, test_size = 0.30, random_state = 42)
 #Test_size is 30% and 70% is for training
