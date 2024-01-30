@@ -3,6 +3,11 @@
         <net-file value="network.net.xml"/>
         <route-files value="routes.rou.xml"/>
     </input>
+    <output>
+        <fcd-output value = "C:/Users/nicka/School/Capstone/Sumo/RawOutputs/fcd-output_rawOut.xml"/>
+        <emission-output value="C:/Users/nicka/School/Capstone/Sumo/RawOutputs/emission_rawOut.xml"/>
+        <tripinfo-output value="C:/Users/nicka/School/Capstone/Sumo/RawOutputs/tripinfo_rawOut.xml"/>
+    </output>
     <time>
         <begin value="0"/>
         <end value="3600"/>
