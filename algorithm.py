@@ -5,6 +5,8 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.metrics import mean_absolute_error
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 df = pd.read_csv('Traffic.csv')
 
@@ -60,3 +62,11 @@ print(df.head())
 # Display evaluation metrics
 print(f"Cross-validated MAE: {cv_mae}")
 print(f"MAE on Test Set: {mae}") ##extermely small and means it is very close to actual values in testing set.
+# Create a pivot table to rearrange the data for the heat map
+pivot_table = df.pivot_table(values='Total', index='Time', columns='Day of the week')
+
+# Create a larger heat map using seaborn
+plt.figure(figsize=(24, 20))  # Adjust the figsize here
+sns.heatmap(pivot_table, cmap='YlGnBu', annot=True, fmt='g', linewidths=.5, cbar_kws={'label': 'Traffic Density'})
+plt.title('Traffic Density Heat Map')
+plt.show()
