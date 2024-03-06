@@ -1,12 +1,18 @@
 import torch
 from ultralytics import YOLO
 import csv
+import pandas as pd
 
 # Load a pretrained YOLO model
 model = YOLO('yolov8n.pt')
 
-# Define a path to a CSV file with images
-# source = '.\ImagePaths.csv'
+file_path = './ImagePaths.csv'
+custom_encoding = 'ISO-8859-1'
+
+df = pd.read_csv(file_path, encoding = custom_encoding)
+
+paths_data_array = df['path'].to_numpy()
+print(paths_data_array) 
 
 results = model(source = './Images/Highway Test Image.jpeg', conf = 0.4, save = False) # Generator of results object
 
@@ -19,7 +25,6 @@ none = 0
 for box in results[0].boxes:
         class_id = int(box.cls)  # Get class ID
         class_label = results[0].names[class_id]  # Get class label from class ID
-        #print(f'Detected class: {class_label}')  # Print class label
 
         match class_label:
                 case "car":
