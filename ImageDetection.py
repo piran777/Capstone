@@ -33,3 +33,12 @@ for box in results[0].boxes:
                 case _:
                         none += 1
 
+total = carCount + bikeCount + busCount + TruckCount
+
+header = ['Time','Date', 'Day of the week', 'CarCount', 'BikeCount', 'BusCount', 'TruckCount', 'Total']
+data = ['3:30:00 PM', '6', 'Wednesday', carCount, bikeCount, busCount, TruckCount, total]
+
+with open('TrafficImageDetected.csv', 'w', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(header)
+        writer.writerow(data)
