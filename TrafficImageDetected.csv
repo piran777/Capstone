@@ -1,2 +1,2 @@
-Time,Date,Day of the week,CarCount,BikeCount,BusCount,TruckCount,Total
-3:30:00 PM,6,Wednesday,10,0,1,1,12
+Time,Date,Day of the week,CarCount,BikeCount,BusCount,TruckCount,Total,Traffic Situation
+3:30:00 PM,6,Wednesday,10,0,1,1,12,low
