@@ -7,8 +7,6 @@ def generate_and_display_heatmap():
     
     #This function is responsible for invoking the heatmap generation functionality
     #from test.py and displaying the resulting heatmap within the Streamlit app.
-    
-    test.main()  # Call the main function or equivalent in test.py to generate the heatmap HTML file
 
     # Load the generated HTML file
     with open("traffic_map.html", "r", encoding="utf-8") as f:
