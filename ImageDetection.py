@@ -8,20 +8,21 @@ import pandas as pd
 model = YOLO('yolov8n.pt')
 
 imagefolder_path = './Images'
+imageNames = []
+
 csvfile_path = './ImagePaths.csv'
 custom_encoding = 'ISO-8859-1'
 
-obj = os.scandir(imagefolder_path)
+obj = os.scandir(imagefolder_path) #Scans images folder for all the image names
 
-print("Files and Directories in '% s':" % imagefolder_path)
-for entry in obj :
+for entry in obj : #Gets image names
     if entry.is_dir() or entry.is_file():
-        print(entry.name)
+        imageNames.append("./Images/" + entry.name)
 
 with open('ImagePaths.csv', 'w', newline='') as f: #Used to write all image paths for all the images into a csv
     writer = csv.writer(f)
-    writer.writerow(header)
-    writer.writerow(data)
+    writer.writerow("path")
+    writer.writerows(imageNames)
 
 obj.close()
 
