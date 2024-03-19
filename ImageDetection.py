@@ -33,8 +33,6 @@ paths_data_array = df['path'].to_numpy()
 
 data = []
 
-
-
 for i in paths_data_array:
         results = model(source=i, conf=0.4, save=False)  # Generator of results object
 
@@ -64,16 +62,15 @@ for i in paths_data_array:
 
         # Define a function to determine the traffic situation
         def determine_traffic_situation(total_count):
-                if total_count >= 50:
+                if total_count >= 20:
                         return "heavy"
-                elif 20 <= total_count < 50:
+                elif 10 <= total_count < 20:
                         return "normal"
                 else:
                         return "low"
 
         # Use the function to get the traffic situation
         traffic_situation = determine_traffic_situation(total)
-
         
         data.append(['3:30:00 PM', '6', 'Wednesday', carCount, bikeCount, busCount, TruckCount, total, traffic_situation])
 
