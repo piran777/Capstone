@@ -1,18 +1,34 @@
 import torch
 from ultralytics import YOLO
 import csv
+import os
 import pandas as pd
 
 # Load a pretrained YOLO model
 model = YOLO('yolov8n.pt')
 
-file_path = './ImagePaths.csv'
+imagefolder_path = './Images'
+csvfile_path = './ImagePaths.csv'
 custom_encoding = 'ISO-8859-1'
 
-df = pd.read_csv(file_path, encoding=custom_encoding)
+obj = os.scandir(imagefolder_path)
+
+print("Files and Directories in '% s':" % imagefolder_path)
+for entry in obj :
+    if entry.is_dir() or entry.is_file():
+        print(entry.name)
+
+with open('ImagePaths.csv', 'w', newline='') as f: #Used to write all image paths for all the images into a csv
+    writer = csv.writer(f)
+    writer.writerow(header)
+    writer.writerow(data)
+
+obj.close()
+
+df = pd.read_csv(csvfile_path, encoding=custom_encoding)
 
 paths_data_array = df['path'].to_numpy()
-print(paths_data_array)
+#print(paths_data_array)
 
 results = model(source='./Images/Highway Test Image.jpeg', conf=0.4, save=False)  # Generator of results object
 
