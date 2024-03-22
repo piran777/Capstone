@@ -1,12 +1,25 @@
-# Capstone
-Trips.trips.xml is used by the NetEdit tool RandomTrips.py to generate the routes.rou.xml, which is referenced and used in the configuration file simcfg.sumocfg
-Simcfg.sumocfg define the files and resouces used as well as output paths for our data
+#ReadME
 
-Delete all files in RawOutputs and ParsedOutputs each time sim is run
+Urban traffic congestion is a growing concern, leading to increased travel times, fuel
+consumption, and pollution. This project aims to develop an innovative traffic management
+system that utilizes heat maps to visualize traffic density at specific intersections. The system
+will employ image processing techniques using YOLO and data analytics to create heat maps
+from pictures or traffic data with the pandas library from Python, providing a visual
+representation of traffic density and identifying congestion hotspots. The effectiveness of the
+heat map-based traffic management system will be evaluated through simulations and real-world
+tests. The project is expected to demonstrate the potential of heat maps and machine learning as
+tools for improving traffic management, leading to more efficient and responsive traffic control
+systems. Future directions for enhancing the system and lessons learned from the project will
+provide valuable insights for further research in the field of traffic management. Our project is
+aimed at creating a backbone for even larger systems that will eventually require this tool. In a
+real world environment the tool is aimed to be embedded into real traffic intersections where
+images can be taken of each intersection for more effective data usage and implementation of the
+tool.
 
-Files used for model can be found in parsedOutputs
 
-1. Open Config folder and run sumocfg file
-2. Run Sim, raw outputs will be in RawOutputs folder
-3. run functions in Parsing_Functions to parse to readable csv
-4. Results of sim are al ParsedOutputs folder
+
+
+
+"streamlit run streamlit_app.py" runs the program
+
+![image](https://github.com/piran777/Capstone/assets/90805441/f011e2cc-fb14-4dea-989a-211f00813d01)
