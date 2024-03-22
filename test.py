@@ -98,11 +98,12 @@ def dms2dec(dms_str):
     return sign * (degrees + minutes / 60 + seconds / 3600)
 
 
-
+# apply dms2dec to 'Latitude' and 'Longitude' columns
 traffic_lights_df['Latitude'] = traffic_lights_df['Latitude'].apply(dms2dec)
 traffic_lights_df['Longitude'] = traffic_lights_df['Longitude'].apply(dms2dec)
 
-
+#Export to csv for handling in decimal format
+traffic_lights_df.to_csv('TrafficLightsLocations_decimal.csv', index=False)
 
 # Assign 'Latitude' and 'Longitude' to combined_data
 combined_data['Latitude'] = traffic_lights_df['Latitude']
