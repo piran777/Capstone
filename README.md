@@ -16,6 +16,8 @@ real world environment the tool is aimed to be embedded into real traffic inters
 images can be taken of each intersection for more effective data usage and implementation of the
 tool.
 
+YOLOV8 
+![image](https://github.com/piran777/Capstone/assets/90805441/fbc6bfc2-60d3-4fb9-95f9-3ece098bfe27)
 
 
 
