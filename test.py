@@ -158,7 +158,7 @@ def get_decision_for_row(row_index):
     
     return predicted_traffic_situation, decision
 import webbrowser
-webbrowser.open("traffic_map.html")
+#webbrowser.open("traffic_map.html")
 # Example usge:
 row_index = 17  # Change this to any row index you want to get the decision for
 traffic_situation, decision = get_decision_for_row(row_index)

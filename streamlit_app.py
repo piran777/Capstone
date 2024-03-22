@@ -7,13 +7,6 @@ import pandas as pd
 # Load in the traffic light locations
 traffic_lights_df = pd.read_csv('TrafficLightsLocations_decimal.csv')
 
-# Generate the map
-def generate_map(df):
-    m = folium.Map(location=[df['Latitude'].mean(), df['Longitude'].mean()], zoom_start=13)
-    # Future work: adding markers to the map here
-
-    return m
-
 # Streamlit layout
 st.title("Traffic Intersection Analysis")
 
@@ -36,8 +29,8 @@ with col1:
 
 with col2:
     st.subheader("Map View")
-    map_display = generate_map(traffic_lights_df)
-    folium_static(map_display)
+    # Use iframe to display hosted heat map
+    st.markdown('<iframe src="https://nandrusiw.github.io/Capstone/traffic_map.html" width="640" height="480"></iframe>', unsafe_allow_html=True)
 
 # Custom CSS to attempt to make the sidebar more compact and the map area larger
 st.markdown("""
