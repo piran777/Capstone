@@ -17,6 +17,9 @@ images can be taken of each intersection for more effective data usage and imple
 tool.
 
 YOLOV8 
+You can run the ImageDetection.py file to run the YOLO program and write the output to the TrafficImageDetected.csv file. 
+The images are all in the images file and will automatically be used. You can open the TrafficImageDetected.csv to see the 
+data that was obtained from YOLO analyzing the traffic images.
 ![image](https://github.com/piran777/Capstone/assets/90805441/fbc6bfc2-60d3-4fb9-95f9-3ece098bfe27)
 
 
